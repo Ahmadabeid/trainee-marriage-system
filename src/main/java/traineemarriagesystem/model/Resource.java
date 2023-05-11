@@ -5,16 +5,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Entity
+@Table(name="Resource")
 @Data
-@Table(name="Document")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Document {
+public class Resource {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long docId;
-    private String docType;
-    private String docName;
-    private String docSize;
+    private Long resId;
+    private String resType;
+    private String resName;
+    private String resContent;
+    private String resFile;
+    private Date resDate;
+
 }

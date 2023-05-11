@@ -6,15 +6,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table
 @Data
-@Table(name="Document")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Document {
+public class QueAns {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long docId;
-    private String docType;
-    private String docName;
-    private String docSize;
+    private Long QueAnsId;
+    private String QueContent;
+    private String AnsContent;
+    private String Topic;
+    private String Comment;
 }

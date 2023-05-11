@@ -20,7 +20,7 @@ public class DocumentController {
     @PostMapping("/addDocument")
     public ResponseEntity<Document> addDocument(@RequestBody Document document){
         Document newDocument= documentService.addDocument(document.getDocType( ),
-                document.getDocName());
+                document.getDocName(), document.getDocSize());
         return new ResponseEntity<>(newDocument, CREATED);
     }
     @DeleteMapping("/deleteDocumentById/{docId}")
@@ -43,5 +43,10 @@ public class DocumentController {
         Document document=documentService.getDocumentById(docId);
         return new ResponseEntity<>(document,OK);
     }
+
+//    @PutMapping("/")
+//    public Document updateDocument(@RequestBody Document document, @PathVariable Long docId){
+//        return documentService.addDocument(document);
+//    }
 
 }

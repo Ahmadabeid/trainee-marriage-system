@@ -12,10 +12,11 @@ import java.util.List;
 public class DocumentService {
     private final DocumentRepository documentRepository;
 
-    public Document addDocument(String docType, String docName ){
+    public Document addDocument(String docType, String docName, String docSize ){
         Document document=new Document();
         document.setDocType(docType);
         document.setDocName(docName);
+        document.setDocSize(docSize);
         return documentRepository.save(document);
     }
     public void deleteById(Long docId){

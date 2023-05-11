@@ -46,4 +46,9 @@ public class TimeTableController {
         TimeTable timeTable=timeTableService.getTimeTableById(timeTableId);
         return new ResponseEntity<>(timeTable,OK);
     }
+
+//    @PostMapping("/")
+//    public TimeTable updateTimeTable(@RequestBody TimeTable timeTable,@PathVariable Long timeTableId){
+//        return timeTableService.addTimeTable(timeTable);
+//    }
 }

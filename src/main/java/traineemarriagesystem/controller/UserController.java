@@ -51,4 +51,9 @@ public class UserController {
         User user= (User) userService.getUserByUsername(username);
         return new ResponseEntity<>(user, OK);
     }
+
+//    @PutMapping("/")
+//    public User updateUser(@RequestBody User user, @PathVariable Long userID){
+//        return userService.addUser(user);
+//    }
 }

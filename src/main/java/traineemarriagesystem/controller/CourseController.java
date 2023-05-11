@@ -47,5 +47,10 @@ public class CourseController {
 
     }
 
+//    @PutMapping("/")
+//    public Course updateUser(@RequestBody Course course,@PathVariable Long courseId){
+//        return courseService.addCourse(course);
+//    }
+
 
 }

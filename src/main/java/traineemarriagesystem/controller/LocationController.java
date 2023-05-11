@@ -44,4 +44,9 @@ public class LocationController {
         Location location=locationService.getLocationById(locationId);
         return new ResponseEntity<>(location,OK);
     }
+
+//    @PutMapping("/")
+//    public Location updateLocation(@RequestBody Location location,@PathVariable Long locationId){
+//        return locationService.addLocation(location);
+//    }
 }
