@@ -1,10 +1,8 @@
 package traineemarriagesystem.service;
-
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import traineemarriagesystem.model.TimeTable;
-import traineemarriagesystem.model.User;
 import traineemarriagesystem.repository.TimeTableRepository;
 
 import java.sql.Time;
@@ -14,10 +12,11 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class TimeTableService {
+    @Autowired
+   private final TimeTableRepository timeTableRepository;
 
-    private final TimeTableRepository timeTableRepository;
 
-    public TimeTable addTimeTable(Date ttDate, Time ttTime, String ttTitle, String Venue){
+    public TimeTable addTimeTable(String ttDate, String ttTime, String ttTitle, String Venue){
         TimeTable timeTable = new TimeTable();
         timeTable.setTtDate(ttDate);
         timeTable.setTtTime(ttTime);
@@ -39,6 +38,17 @@ public class TimeTableService {
     public TimeTable getTimeTableById(Long userID){
         return timeTableRepository.findById(userID).get();
     }
+
+    public TimeTable updateTimeTable(Long timeTableId,String ttDate, String ttTime,
+                                     String ttTiles, String Venue){
+        TimeTable timeTable= getTimeTableById(timeTableId);
+        timeTable.setTtDate(ttDate);
+        timeTable.setTtTime(ttTime);
+        timeTable.setTtTitle(ttTiles);
+        timeTable.setVenue(Venue);
+        return timeTableRepository.save(timeTable);
+    }
+
 
 
 }

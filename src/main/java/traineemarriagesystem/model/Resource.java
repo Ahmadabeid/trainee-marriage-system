@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 
 @Entity
 @Table(name="Resource")
@@ -20,6 +19,6 @@ public class Resource {
     private String resName;
     private String resContent;
     private String resFile;
-    private Date resDate;
+    private String resDate;
 
 }

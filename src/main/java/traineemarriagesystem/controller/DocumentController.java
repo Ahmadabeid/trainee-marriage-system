@@ -1,6 +1,7 @@
 package traineemarriagesystem.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import traineemarriagesystem.model.Document;
@@ -15,6 +16,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RequiredArgsConstructor
 @RequestMapping("/Document")
 public class DocumentController {
+    @Autowired
     private final DocumentService documentService;
 
     @PostMapping("/addDocument")
@@ -44,9 +46,15 @@ public class DocumentController {
         return new ResponseEntity<>(document,OK);
     }
 
-//    @PutMapping("/")
-//    public Document updateDocument(@RequestBody Document document, @PathVariable Long docId){
-//        return documentService.addDocument(document);
-//    }
+// update Document
+
+    @PutMapping("/updateDocument/{docId}")
+    public ResponseEntity<Document> updateDocument(@RequestBody Document document,
+                                                   @PathVariable Long docId){
+        Document updateDocument=documentService.updateDocument(docId,
+                document.getDocType(), document.getDocName(),document.getDocSize());
+        return new ResponseEntity<>(updateDocument, OK);
+    }
+
 
 }

@@ -1,7 +1,7 @@
 package traineemarriagesystem.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import traineemarriagesystem.model.Resource;
@@ -16,6 +16,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RequiredArgsConstructor
 @RequestMapping("/Resource")
 public class ResourceController {
+    @Autowired
     private final ResourceService resourceService;
 
     @PostMapping("/addResource")
@@ -38,7 +39,6 @@ public class ResourceController {
     public ResponseEntity<Resource> getResourceById(@PathVariable Long resId){
         Resource resource=resourceService.getResourceById(resId);
         return new ResponseEntity<>(resource, OK);
-
     }
 
     @DeleteMapping("/delete/{resId}")
@@ -46,9 +46,13 @@ public class ResourceController {
         resourceService.deleteResourceById(resId);
     }
 
-//    @PutMapping("/")
-//    public Resource updateResource(@RequestBody Resource resource, @PathVariable Long resId){
-//        return resourceService.addResource(resource);
-//    }
+    @PutMapping("/updateResource/{resId}")
+    public ResponseEntity<Resource> updateResource(@RequestBody Resource resource, @PathVariable Long resId){
+        Resource updateResource=resourceService.updateResource(resId, resource.getResType(), resource.getResName(),
+                resource.getResContent(),resource.getResFile(),resource.getResDate());
+        return new ResponseEntity<>(updateResource, OK);
+    }
+
+
 
 }

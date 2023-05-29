@@ -1,6 +1,7 @@
 package traineemarriagesystem.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import traineemarriagesystem.model.QueAns;
@@ -15,6 +16,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("/QueAns")
 @RequiredArgsConstructor
 public class QueAnsController {
+    @Autowired
     private final QueAnsService queAnsService;
 
     @PostMapping("/addQueAns")
@@ -41,9 +43,13 @@ public class QueAnsController {
         queAnsService.deleteQueAnsById(QueAnsId);
     }
 
-//    @PutMapping("/")
-//    public QueAns updateQueAns(@RequestBody QueAns queAns,@PathVariable Long QueAnsId){
-//        return queAnsService.addQueAns(queAns);
-//    }
+// Update Question and Answer
+    @PutMapping("/updateQueAns/{QueAnsId}")
+    public ResponseEntity<QueAns> updateQueAns(@RequestBody QueAns queAns, @PathVariable Long QueAnsId){
+        QueAns updateQueAns=queAnsService.updateQueAns(QueAnsId,
+                queAns.getQueContent(), queAns.getAnsContent(), queAns.getTopic(), queAns.getComment());
+        return new ResponseEntity<>(updateQueAns, OK);
+    }
+
 
 }

@@ -1,6 +1,7 @@
 package traineemarriagesystem.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import traineemarriagesystem.model.Location;
@@ -15,6 +16,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("/Location")
 @RequiredArgsConstructor
 public class LocationController {
+    @Autowired
     private final LocationService locationService;
 
     @PostMapping("/addLocation")
@@ -32,7 +34,7 @@ public class LocationController {
 //    get locations
 
     @GetMapping("/getLocations")
-    public ResponseEntity<List> getAllLocations(){
+    public ResponseEntity<List<Location>> getAllLocations(){
         List<Location> newList=locationService.getAllLocations();
         return new ResponseEntity<>(newList,OK);
     }
@@ -45,8 +47,12 @@ public class LocationController {
         return new ResponseEntity<>(location,OK);
     }
 
-//    @PutMapping("/")
-//    public Location updateLocation(@RequestBody Location location,@PathVariable Long locationId){
-//        return locationService.addLocation(location);
-//    }
+// update location
+    @PutMapping("/updateLocation/{locationId}")
+    public ResponseEntity<Location> updateLocation(@RequestBody Location location,@PathVariable Long locationId){
+        Location updateLocation=locationService.updateLocation(locationId,
+                location.getLocNumber(),location.getLocName());
+        return new ResponseEntity<>(updateLocation, OK);
+    }
+
 }

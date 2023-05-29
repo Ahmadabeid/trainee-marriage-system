@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Inheritance (strategy = InheritanceType.JOINED)
 public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +24,7 @@ public class User{
     private String username;
     private String email;
     private String address;
+    private String age;
     private String gender;
     private String password;
     private String phoneNumber;

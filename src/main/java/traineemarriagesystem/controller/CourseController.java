@@ -1,6 +1,7 @@
 package traineemarriagesystem.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import traineemarriagesystem.model.Course;
@@ -16,6 +17,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("/Course")
 
 public class CourseController {
+    @Autowired
 
     private final CourseService courseService;
 
@@ -47,10 +49,17 @@ public class CourseController {
 
     }
 
-//    @PutMapping("/")
-//    public Course updateUser(@RequestBody Course course,@PathVariable Long courseId){
-//        return courseService.addCourse(course);
-//    }
+// update course
+
+    @PutMapping("/updateCourse/{courseId}")
+    public ResponseEntity<Course> updateCourse(@RequestBody Course course,
+                                               @PathVariable Long courseId){
+        Course updateCourse =courseService.updateCurse(courseId,
+                course.getCourseCode(),course.getCourseTitle(), course.getCourseYear(),
+                course.getCourseLevel());
+        return new ResponseEntity<>(updateCourse, OK);
+    }
+
 
 
 }

@@ -1,6 +1,7 @@
 package traineemarriagesystem.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import traineemarriagesystem.model.User;
@@ -15,7 +16,9 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("/User")
 @RequiredArgsConstructor
 public class UserController {
+    @Autowired
     private final UserService userService;
+
 
 
     @PostMapping("/addUser")
@@ -24,7 +27,7 @@ public class UserController {
     {
         User newUser = userService.addUser(user.getFirstName(),
                 user.getMiddleName(), user.getLastName(), user.getUsername(),
-                user.getPassword(), user.getAddress(), user.getEmail(),
+                user.getPassword(), user.getAddress(), user.getAge(), user.getEmail(),
                 user.getPhoneNumber(), user.getGender());
         return new ResponseEntity<>(newUser, CREATED);
     }
@@ -52,8 +55,13 @@ public class UserController {
         return new ResponseEntity<>(user, OK);
     }
 
-//    @PutMapping("/")
-//    public User updateUser(@RequestBody User user, @PathVariable Long userID){
-//        return userService.addUser(user);
-//    }
+//update user
+   @PutMapping("/updateUser/{userID}")
+    public ResponseEntity<User> updateUser(@RequestBody User user,@PathVariable Long userID){
+        User updateUser= userService.updateUser(userID,
+                user.getFirstName(),user.getMiddleName(),user.getLastName(),
+                user.getUsername(),user.getEmail(),user.getAddress(),
+                user.getAge(),user.getGender(),user.getPassword(),user.getPhoneNumber());
+        return new ResponseEntity<>(updateUser, OK);
+   }
 }
