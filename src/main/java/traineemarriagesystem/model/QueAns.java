@@ -5,17 +5,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
-@Table
+@Table(name="QueAns")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class QueAns {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long QueAnsId;
-    private String QueContent;
-    private String AnsContent;
-    private String Topic;
-    private String Comment;
+    private Long queAnsId;
+    private String queContent;
+    private String ansContent;
+    private String topic;
+    private String comment;
+
+    @OneToMany(mappedBy = "queAns")
+    private List<Course> courses;
+
+
 }

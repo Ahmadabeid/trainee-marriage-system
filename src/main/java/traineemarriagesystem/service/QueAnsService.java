@@ -29,21 +29,21 @@ public class QueAnsService {
         return queAnsRepository.findAll();
     }
 
-    public QueAns getQueAnsById(Long QueAnsId){
-        return queAnsRepository.findById(QueAnsId).get();
+    public QueAns getQueAnsById(Long queAnsId){
+        return queAnsRepository.findById(queAnsId).get();
     }
 
-    public void deleteQueAnsById(Long QueAnsId){
-        queAnsRepository.deleteById(QueAnsId);
+    public void deleteQueAnsById(Long queAnsId){
+        queAnsRepository.deleteById(queAnsId);
     }
 
 
-   public QueAns updateQueAns(Long QueAnsId,String QueContent, String AnsContent,String Topic, String Comment){
-        QueAns queAns=getQueAnsById(QueAnsId);
-        queAns.setQueContent(QueContent);
-        queAns.setAnsContent(AnsContent);
-        queAns.setTopic(Topic);
-        queAns.setComment(Comment);
+   public QueAns updateQueAns(Long queAnsId,String queContent, String ansContent,String topic, String comment){
+        QueAns queAns=getQueAnsById(queAnsId);
+        queAns.setQueContent(queContent);
+        queAns.setAnsContent(ansContent);
+        queAns.setTopic(topic);
+        queAns.setComment(comment);
         return queAnsRepository.save(queAns);
    }
 }

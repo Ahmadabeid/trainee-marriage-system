@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 
 
 @Entity
@@ -20,4 +21,28 @@ public class Course {
     private String courseTitle;
     private String courseYear;
     private String courseLevel;
+
+    @ManyToOne
+    @JoinColumn(name="timeTableId")
+    private TimeTable timeTable;
+
+    @OneToMany(mappedBy = "course")
+    private List<Resource> resources;
+
+
+
+    @ManyToOne
+    @JoinColumn(name="QueAnsId")
+    private QueAns queAns;
+
+    @ManyToMany(mappedBy = "courses")
+    private List<Trainee> trainees;
+
+    @ManyToMany(mappedBy = "courses")
+    private List<Participant> participants;
+
+
+
+
+
 }

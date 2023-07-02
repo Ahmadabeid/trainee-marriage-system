@@ -15,6 +15,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/Course")
+@CrossOrigin
 
 public class CourseController {
     @Autowired
@@ -28,9 +29,10 @@ public class CourseController {
         return new ResponseEntity<>(newCourse,CREATED);
     }
 
-    @DeleteMapping("/deleteById{courseId}")
-    public void deleteUserById(Long courseId){
+    @DeleteMapping("/deleteCourseById/{courseId}")
+    public void deleteCourseById(@PathVariable Long courseId){
         courseService.deleteById(courseId);
+
     }
 
 //    get courses
@@ -42,7 +44,7 @@ public class CourseController {
     }
 
 //    get courses by id
-    @GetMapping("/getUserById/{courseId}")
+    @GetMapping("/getCourseById/{courseId}")
     public ResponseEntity<Course> getCourseById(@PathVariable Long courseId){
         Course course=courseService.getCourseById(courseId);
         return new ResponseEntity<>(course, OK);

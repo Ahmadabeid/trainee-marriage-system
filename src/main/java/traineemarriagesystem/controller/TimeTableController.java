@@ -16,6 +16,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/TimeTable")
+@CrossOrigin
 public class TimeTableController {
     @Autowired
     private final TimeTableService timeTableService;
@@ -25,11 +26,11 @@ public class TimeTableController {
     public ResponseEntity<TimeTable> addTimeTable(@RequestBody TimeTable timeTable)
     {
         TimeTable newTimeTable = timeTableService.addTimeTable(timeTable.getTtDate(),
-                timeTable.getTtTime(), timeTable.getTtTitle(), timeTable.getVenue());
+                timeTable.getTtTime(), timeTable.getTtTitle(), timeTable.getTtVenue());
         return new ResponseEntity<>(newTimeTable, CREATED);
     }
 
-    @DeleteMapping("delete/timeTableId")
+    @DeleteMapping("/delete/{timeTableId}")
     public void deleteTimeTableById(@PathVariable Long timeTableId){
         timeTableService.deleteTimeTableById(timeTableId);
     }
@@ -52,7 +53,7 @@ public class TimeTableController {
    @PutMapping("/updateTimeTable/{timeTableId}")
     public ResponseEntity<TimeTable> updateTimeTable(@RequestBody TimeTable timeTable, @PathVariable Long timeTableId){
         TimeTable updateTimeTable = timeTableService.updateTimeTable(timeTableId,
-                timeTable.getTtDate(),timeTable.getTtTime(),timeTable.getTtTitle(),timeTable.getVenue());
+                timeTable.getTtDate(),timeTable.getTtTime(),timeTable.getTtTitle(),timeTable.getTtVenue());
     return new ResponseEntity<> (updateTimeTable,HttpStatus.OK);
 
    }

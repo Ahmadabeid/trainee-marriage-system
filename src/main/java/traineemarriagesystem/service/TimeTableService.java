@@ -4,9 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import traineemarriagesystem.model.TimeTable;
 import traineemarriagesystem.repository.TimeTableRepository;
-
-import java.sql.Time;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -16,12 +13,12 @@ public class TimeTableService {
    private final TimeTableRepository timeTableRepository;
 
 
-    public TimeTable addTimeTable(String ttDate, String ttTime, String ttTitle, String Venue){
+    public TimeTable addTimeTable(String ttDate, String ttTime, String ttTitle, String ttVenue){
         TimeTable timeTable = new TimeTable();
         timeTable.setTtDate(ttDate);
         timeTable.setTtTime(ttTime);
         timeTable.setTtTitle(ttTitle);
-        timeTable.setVenue(Venue);
+        timeTable.setTtVenue(ttVenue);
 
         return timeTableRepository.save(timeTable);
 
@@ -40,12 +37,12 @@ public class TimeTableService {
     }
 
     public TimeTable updateTimeTable(Long timeTableId,String ttDate, String ttTime,
-                                     String ttTiles, String Venue){
+                                     String ttTiles, String ttVenue){
         TimeTable timeTable= getTimeTableById(timeTableId);
         timeTable.setTtDate(ttDate);
         timeTable.setTtTime(ttTime);
         timeTable.setTtTitle(ttTiles);
-        timeTable.setVenue(Venue);
+        timeTable.setTtVenue(ttVenue);
         return timeTableRepository.save(timeTable);
     }
 

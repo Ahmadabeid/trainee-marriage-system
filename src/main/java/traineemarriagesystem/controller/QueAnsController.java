@@ -15,6 +15,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RestController
 @RequestMapping("/QueAns")
 @RequiredArgsConstructor
+@CrossOrigin
 public class QueAnsController {
     @Autowired
     private final QueAnsService queAnsService;
@@ -32,24 +33,26 @@ public class QueAnsController {
         return new ResponseEntity<>(newList, OK);
     }
 
-    @GetMapping("/getAllQueAns/{QueAnsId}")
-    public ResponseEntity<QueAns> getQueAnsById(@PathVariable Long QueAnsId){
-        QueAns queAns = queAnsService.getQueAnsById(QueAnsId);
+    @GetMapping("/getQueAnsById/{queAnsId}")
+    public ResponseEntity<QueAns> getQueAnsById(@PathVariable Long queAnsId){
+        QueAns queAns = queAnsService.getQueAnsById(queAnsId);
         return new ResponseEntity<>(queAns, OK);
     }
 
-    @DeleteMapping("/delete/{QueAnsId}")
-    public void deleteQueAnsById(Long QueAnsId){
-        queAnsService.deleteQueAnsById(QueAnsId);
+    @DeleteMapping("/deleteQueAnsById/{queAnsId}")
+    public void deleteQueAnsById(@PathVariable Long queAnsId){
+        queAnsService.deleteQueAnsById(queAnsId);
     }
 
 // Update Question and Answer
-    @PutMapping("/updateQueAns/{QueAnsId}")
-    public ResponseEntity<QueAns> updateQueAns(@RequestBody QueAns queAns, @PathVariable Long QueAnsId){
-        QueAns updateQueAns=queAnsService.updateQueAns(QueAnsId,
-                queAns.getQueContent(), queAns.getAnsContent(), queAns.getTopic(), queAns.getComment());
+   @PutMapping("/updateQueAns/{queAnsId}")
+    public ResponseEntity<QueAns> updateQueAns(@RequestBody QueAns queAns,
+   @PathVariable Long queAnsId){
+        QueAns updateQueAns = queAnsService.updateQueAns(queAnsId,
+                queAns.getQueContent(),queAns.getAnsContent(),
+                queAns.getTopic(),queAns.getComment());
         return new ResponseEntity<>(updateQueAns, OK);
-    }
+   }
 
 
 }

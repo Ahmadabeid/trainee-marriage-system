@@ -4,9 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import traineemarriagesystem.model.Document;
 import traineemarriagesystem.service.DocumentService;
 
+import java.io.IOException;
 import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;
@@ -15,14 +17,15 @@ import static org.springframework.http.HttpStatus.OK;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/Document")
+@CrossOrigin
 public class DocumentController {
     @Autowired
     private final DocumentService documentService;
 
     @PostMapping("/addDocument")
-    public ResponseEntity<Document> addDocument(@RequestBody Document document){
+    public ResponseEntity<Document> addDocument(@RequestBody Document document)  {
         Document newDocument= documentService.addDocument(document.getDocType( ),
-                document.getDocName(), document.getDocSize());
+                 document.getDocName(), document.getDocSize());
         return new ResponseEntity<>(newDocument, CREATED);
     }
     @DeleteMapping("/deleteDocumentById/{docId}")

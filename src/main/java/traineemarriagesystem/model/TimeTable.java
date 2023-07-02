@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 
 @Entity
 @Data
@@ -18,6 +20,8 @@ public class TimeTable {
     private String ttDate;
     private String ttTime;
     private String ttTitle;
-    private String Venue;
+    private String ttVenue;
+    @OneToMany(mappedBy = "timeTable")
+    private List<Course> courses;
 
 }

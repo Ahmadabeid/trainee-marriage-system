@@ -21,4 +21,9 @@ public class Resource {
     private String resFile;
     private String resDate;
 
+    @ManyToOne
+    @JoinColumn(name="courseId")
+    private  Course course;
+
+
 }
