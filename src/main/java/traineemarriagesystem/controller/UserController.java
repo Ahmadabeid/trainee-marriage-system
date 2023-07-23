@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import traineemarriagesystem.model.User;
+import traineemarriagesystem.service.UserInterface;
 import traineemarriagesystem.service.UserService;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping("/User")
+@RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
     @Autowired
@@ -27,10 +28,12 @@ public class UserController {
     {
         User newUser = userService.addUser(user.getFirstName(),
                 user.getMiddleName(), user.getLastName(), user.getUsername(),
-                user.getPassword(), user.getAddress(), user.getAge(), user.getEmail(),
+                user.getPassword(), user.getEmail(),
                 user.getPhoneNumber(), user.getGender());
         return new ResponseEntity<>(newUser, CREATED);
     }
+
+
 
     @DeleteMapping("/delete/{userID}")
     public void deleteUserById(@PathVariable Long userID ){
@@ -39,13 +42,13 @@ public class UserController {
 //    Get all users
     @GetMapping("/getUsers")
     public ResponseEntity<List<User>> getAllUsers(){
-        List<User> newList =userService.getAllUsers();
+        List<User> newList = userService.getAllUsers();
         return new ResponseEntity<>(newList, OK);
     }
 //    get user by id
     @GetMapping("/getUserById{userID}")
     public ResponseEntity<User> getUserById(@PathVariable Long userID){
-        User user =userService.getUserById(userID);
+        User user = userService.getUserById(userID);
         return new ResponseEntity<>(user, OK);
     }
 //    Get userByUsername
@@ -55,13 +58,21 @@ public class UserController {
         return new ResponseEntity<>(user, OK);
     }
 
+//    Get userByEmail
+
+    @GetMapping("/getUserByEmail/{email}")
+    public ResponseEntity<User> getUserByEmail(@PathVariable String email){
+        User user =(User) userService.getUserByEmail(email);
+        return new ResponseEntity<>(user, OK);
+    }
+
 //update user
    @PutMapping("/updateUser/{userID}")
     public ResponseEntity<User> updateUser(@RequestBody User user,@PathVariable Long userID){
         User updateUser= userService.updateUser(userID,
                 user.getFirstName(),user.getMiddleName(),user.getLastName(),
-                user.getUsername(),user.getEmail(),user.getAddress(),
-                user.getAge(),user.getGender(),user.getPassword(),user.getPhoneNumber());
+                user.getUsername(),user.getEmail(),
+                user.getGender(),user.getPassword(),user.getPhoneNumber());
         return new ResponseEntity<>(updateUser, OK);
    }
 }

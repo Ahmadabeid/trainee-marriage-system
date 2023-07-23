@@ -13,7 +13,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping("/QueAns")
+@RequestMapping("/queAns")
 @RequiredArgsConstructor
 @CrossOrigin
 public class QueAnsController {

@@ -17,6 +17,16 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 public class Trainee extends User{
     private String regNo;
+    private String pLaceOfBirth;
+    private String dateOfBirth;
+    private String nationality;
+    private String district;
+    private String ward;
+    private String employmentStatus;
+    private String maritalStatus;
+    private String disability;
+    private String disabilityTitle;
+    private String educationalStatus;
     @OneToMany(mappedBy = "trainee")
     private List<Document> documents;
 

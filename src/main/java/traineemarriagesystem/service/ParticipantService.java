@@ -1,8 +1,10 @@
 package traineemarriagesystem.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import traineemarriagesystem.model.Participant;
+import traineemarriagesystem.model.Trainee;
 import traineemarriagesystem.model.User;
 import traineemarriagesystem.repository.ParticipantRepository;
 import traineemarriagesystem.repository.UserRepository;
@@ -14,22 +16,22 @@ import java.util.List;
 public class ParticipantService {
     private final ParticipantRepository participantRepository;
     private final UserRepository userRepository;
+   private final PasswordEncoder passwordEncoder;
 
 
     public Participant addParticipant(String firstname,String middleName, String lastname,
-                                      String username, String email, String address,String age, String gender, String password,
-                                      String phoneNumber,String qualification,String status){
+                                      String username, String email, String gender, String password,
+                                      String phoneNumber,String role,String qualification,String status){
         Participant participant=new Participant();
         participant.setFirstName(firstname);
         participant.setMiddleName(middleName);
         participant.setLastName(lastname);
         participant.setUsername(username);
         participant.setEmail(email);
-        participant.setAddress(address);
-        participant.setAge(age);
         participant.setGender(gender);
-        participant.setPassword(password);
+        participant.setPassword(passwordEncoder.encode(password));
         participant.setPhoneNumber(phoneNumber);
+        participant.setRole(role);
         participant.setQualification(qualification);
         participant.setStatus(status);
 
@@ -57,7 +59,7 @@ public class ParticipantService {
 
 //update    Participant
  public Participant updateParticipant(Long  userId,String firstName,String middleName,String lastNme,
-                                      String username, String email, String address,String age, String gender,
+                                      String username, String email, String gender,String role,
                                       String password, String phoneNumber, String qualification,String status){
 
         Participant participant = getParticipantById(userId);
@@ -66,21 +68,31 @@ public class ParticipantService {
      participant.setLastName(lastNme);
      participant.setUsername(username);
      participant.setEmail(email);
-     participant.setAddress(address);
-     participant.setAge(age);
      participant.setGender(gender);
-     participant.setPassword(password);
+     participant.setPassword(passwordEncoder.encode(password));
      participant.setPhoneNumber(phoneNumber);
      participant.setQualification(qualification);
      participant.setStatus(status);
+     participant.setRole(role);
 
      return participantRepository.save(participant);
 
  }
 
 
+ public Participant registerParticipant(Participant participant){
+        participant.setRole("ROLE_STAFF");
+        return participantRepository.save(participant);
+ }
 
+ public User findParticipantByUsername(String username){
+        return participantRepository.findParticipantByUsername(username);
 
+ }
+
+ public User findParticipantByEmail(String email){
+        return participantRepository.findParticipantByEmail(email);
+ }
 
 
 }

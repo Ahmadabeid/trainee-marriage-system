@@ -14,7 +14,7 @@ import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/Course")
+@RequestMapping("/course")
 @CrossOrigin
 
 public class CourseController {
@@ -36,7 +36,7 @@ public class CourseController {
     }
 
 //    get courses
-    @GetMapping("getCourses")
+    @GetMapping("/getCourses")
     public ResponseEntity<List<Course>> getAllCourses(){
         List<Course> newList =courseService.getAllCourses();
         return new ResponseEntity<>(newList, OK);

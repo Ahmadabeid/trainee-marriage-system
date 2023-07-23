@@ -23,11 +23,9 @@ public class User{
     )
     private String username;
     private String email;
-    private String address;
-    private String age;
+    private String phoneNumber;
     private String gender;
     private String password;
-    private String phoneNumber;
     private String role;
     private String[] authority;
 }

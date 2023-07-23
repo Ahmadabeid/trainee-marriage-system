@@ -16,7 +16,7 @@ import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/Document")
+@RequestMapping("/document")
 @CrossOrigin
 public class DocumentController {
     @Autowired

@@ -15,7 +15,7 @@ import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/TimeTable")
+@RequestMapping("/timetable")
 @CrossOrigin
 public class TimeTableController {
     @Autowired

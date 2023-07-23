@@ -14,7 +14,7 @@ import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/Resource")
+@RequestMapping("/resource")
 @CrossOrigin
 public class ResourceController {
     @Autowired
