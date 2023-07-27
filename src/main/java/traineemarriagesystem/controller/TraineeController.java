@@ -21,6 +21,7 @@ public class TraineeController {
 
     private final TraineeService traineeService;
 
+
     @PostMapping("/registerTrainee")
     public ResponseEntity<Trainee> registerTrainee(@RequestBody Trainee trainee){
         Trainee newTrainee=traineeService.registerTrainee(trainee);
@@ -31,13 +32,28 @@ public class TraineeController {
     public ResponseEntity<Trainee> addTrainee(@RequestBody Trainee trainee){
         String regNo=traineeService.generateRegistrationNumber();
         trainee.setRegNo(regNo);
-        Trainee newTrainee=traineeService.addTrainee(trainee.getFirstName(),trainee.getRole(),
-                trainee.getMiddleName(),trainee.getLastName(), trainee.getUsername(),
-                trainee.getPassword(),trainee.getGender(),trainee.getEmail(),
-                trainee.getPhoneNumber(),trainee.getRegNo(),trainee.getPLaceOfBirth(),trainee.getDateOfBirth(),
-                trainee.getNationality(),trainee.getDistrict(),
-                trainee.getWard(), trainee.getEmploymentStatus(),trainee.getMaritalStatus(),
-                trainee.getDisability(), trainee.getDisabilityTitle(), trainee.getEducationalStatus());
+        Trainee newTrainee=traineeService.addTrainee(
+
+                trainee.getEmail(),
+                trainee.getFirstName(),
+                trainee.getGender(),
+                trainee.getLastName(),
+                trainee.getMiddleName(),
+                trainee.getPassword(),
+                trainee.getPhoneNumber(),
+                trainee.getRole(),
+                trainee.getUsername(),
+                trainee.getRegNo(),
+                trainee.getPLaceOfBirth(),
+                trainee.getDateOfBirth(),
+                trainee.getNationality(),
+                trainee.getDistrict(),
+                trainee.getWard(),
+                trainee.getEmploymentStatus(),
+                trainee.getMaritalStatus(),
+                trainee.getDisability(),
+                trainee.getDisabilityTitle(),
+                trainee.getEducationalStatus());
         return new ResponseEntity<>(newTrainee, CREATED);
     }
 

@@ -16,14 +16,15 @@ public class TraineeMarriageSystemApplication {
 
 
 //	@Bean
-	public User insertAdmin(UserRepository userRepository) {
-		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-		User admin = new User();
-		admin.setUsername("Ahmad");
-		admin.setPassword(passwordEncoder.encode("123"));
-		userRepository.save(admin);
-		return admin;
-	}
+//	public User insertAdmin(UserRepository userRepository) {
+//		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//		User admin = new User();
+//		admin.setUsername("Ahmad");
+//		admin.setPassword(passwordEncoder.encode("123"));
+//		admin.setRole("ROLE_ADMIN");
+//		userRepository.save(admin);
+//		return admin;
+//	}
 
 
 }

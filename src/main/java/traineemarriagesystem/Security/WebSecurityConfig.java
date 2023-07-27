@@ -19,7 +19,7 @@ public class WebSecurityConfig {
         httpSecurity.csrf().disable().cors()
                 .and()
                 .authorizeHttpRequests()
-                .requestMatchers("/auth/login/**", "/trainee/registerTrainee/**", "/participant/registerParticipant/**","/course/getCourses/**").permitAll()
+                .requestMatchers("/auth/login/**", "user/addUser/**","/trainee/addTrainee/**", "/participant/addParticipant/**","/course/getCourses/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic();

@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import traineemarriagesystem.model.Participant;
-import traineemarriagesystem.model.Trainee;
 import traineemarriagesystem.model.User;
 import traineemarriagesystem.repository.ParticipantRepository;
 import traineemarriagesystem.repository.UserRepository;
@@ -15,10 +14,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ParticipantService {
     private final ParticipantRepository participantRepository;
-    private final UserRepository userRepository;
+
    private final PasswordEncoder passwordEncoder;
 
-
+  public Participant registerParticipant(Participant participant){
+      participant.setRole("ROLE_PARTICIPANT");
+      return participantRepository.save(participant);
+  }
     public Participant addParticipant(String firstname,String middleName, String lastname,
                                       String username, String email, String gender, String password,
                                       String phoneNumber,String role,String qualification,String status){
@@ -80,10 +82,7 @@ public class ParticipantService {
  }
 
 
- public Participant registerParticipant(Participant participant){
-        participant.setRole("ROLE_STAFF");
-        return participantRepository.save(participant);
- }
+
 
  public User findParticipantByUsername(String username){
         return participantRepository.findParticipantByUsername(username);

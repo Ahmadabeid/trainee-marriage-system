@@ -30,9 +30,16 @@ public class ParticipantController {
     public ResponseEntity<Participant> addParticipant(@RequestBody Participant participant){
         Participant newParticipant=participantService.addParticipant(
                 participant.getFirstName(),
-                participant.getMiddleName(),participant.getLastName(), participant.getUsername(),
-                participant.getPassword(),participant.getGender(),participant.getEmail(),
-                participant.getPhoneNumber(),participant.getQualification(),participant.getRole(),participant.getStatus());
+                participant.getMiddleName(),
+                participant.getLastName(),
+                participant.getUsername(),
+                participant.getPassword(),
+                participant.getGender(),
+                participant.getEmail(),
+                participant.getPhoneNumber(),
+                participant.getQualification(),
+                participant.getRole(),
+                participant.getStatus());
         return new ResponseEntity<>(newParticipant,CREATED);
 
     }

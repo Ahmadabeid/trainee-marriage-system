@@ -21,8 +21,11 @@ public class User{
             nullable = false,
             unique = true
     )
+
     private String username;
+
     private String email;
+
     private String phoneNumber;
     private String gender;
     private String password;
